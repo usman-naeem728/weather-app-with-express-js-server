@@ -19,6 +19,8 @@ app.get('/weather', (req, res) => {
     console.log("ip", req.ip)
     res.send({
         temp:30,
+        min:25,
+        max:32,
         humiity: 70,
         serverTime: new Date().toString()
     })
