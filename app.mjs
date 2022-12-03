@@ -10,6 +10,15 @@ app.get('/', (req, res) => {
     res.send(
         'helllo world' + new Date().toString())
 })
+app.get('/weather', (req, res) => {
+
+    console.log("ip", req.ip)
+    res.send({
+        temp:30,
+        humiity: 70,
+        serverTime: new Date().toString()
+    })
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
