@@ -1,14 +1,14 @@
 // console.log("my first server");
 import express from 'express';
-import cors from 'cors'
-
+import cors from 'cors';
+import path from "path";
 const app = express()
 const port = process.env.PORT || 5000
 
 
 app.use(cors())
 
-app.get('/', (req, res) => {
+app.get('/fdsf', (req, res) => {
 
     console.log("ip", req.ip)
     res.send(
@@ -25,6 +25,10 @@ app.get('/weather', (req, res) => {
         serverTime: new Date().toString()
     })
 })
+
+const __dirname = path.resolve();
+app.use('/', express.static(path.join(__dirname, './weather-api/build')))
+app.use('*', express.static(path.join(__dirname, 'public')))
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
