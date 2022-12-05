@@ -27,7 +27,7 @@ app.get('/weather', (req, res) => {
 })
 
 const __dirname = path.resolve();
-app.use('/', express.static(path.join(__dirname, './weather-api/build')))
+app.get('/', express.static(path.join(__dirname, './weather-api/build')))
 app.use('*', express.static(path.join(__dirname, './weather-api/build')))
 
 app.listen(port, () => {
