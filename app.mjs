@@ -15,10 +15,11 @@ app.get('/fdsf', (req, res) => {
     res.send(
         'helllo world' + new Date().toString())
 })
-app.get('/weather', (req, res) => {
+app.get('/weather/:cityName', (req, res) => {
 
     console.log("ip", req.ip)
     res.send({
+        city : req.params.cityName,
         temp:30,
         min:25,
         max:32,

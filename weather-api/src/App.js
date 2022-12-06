@@ -14,17 +14,16 @@ if(window.location.href.split(":")[0] === "http"){
 function App() {
   const [cityname, setCityname] = useState("");
   const [countryname, setcountryname] = useState("");
-  const [Weathername, setWeathername] = useState("");
   const [Weathertemp, setWeathertemp] = useState("");
-  const [Weatherfeel, setWeatherfeel] = useState("");
-  const [icon, seticon] = useState("");
+  const [Weathertempmin, setWeathertempmin] = useState("");
+
 
   function getWeather(e) {
     e.preventDefault()
 
     const options = {
       method: 'GET',
-      url: `${baseUrl}/weather`,
+      url: `${baseUrl}/weather/${cityname}`,
       // params: { q: cityname },
       // headers: {
       //   'X-RapidAPI-Key': '4af0c4866bmsh9e303087aa9678ap1a85cdjsn9202652b7d5e',
@@ -34,11 +33,11 @@ function App() {
 
     axios.request(options).then(function (response) {
       console.log(response.data);
-      // setWeathername(response.data.location.name);
-      // setcountryname(response.data.location.country);
+  
+      setcountryname(response.data.city);
       setWeathertemp(response.data.temp);
-      setWeatherfeel(response.data.min);
-      // seticon(response.data.current.condition.icon);
+      setWeathertempmin(response.data.min);
+  
     }).catch(function (error) {
       console.error(error);
     });
@@ -58,10 +57,10 @@ function App() {
         </form>
 
 
-        {/* <h4  > <b> COUNTRY NAME: </b> {countryname}</h4>
-        <h5 > <b>  CITY NAME: </b> {Weathername}</h5> */}
-        <h5 className={(cityname === "") ? "none" : "block"}> <b> TEMPERATURE: </b> {Weathertemp}°C</h5>
-        <h5 className={(cityname === "") ? "none" : "block"}> <b> Min:   </b> {Weatherfeel}°C</h5>
+        {/* <h4  > <b> COUNTRY NAME: </b> {countryname}</h4> */}
+        <h5 className={(Weathertemp === "") ? "none" : "block"}> <b>  CITY NAME: </b> {countryname}</h5>
+        <h5 className={(Weathertemp === "") ? "none" : "block"}> <b> TEMPERATURE: </b> {Weathertemp}°C</h5>
+        <h5 className={(Weathertemp === "") ? "none" : "block"}> <b> Min:   </b> {Weathertempmin}°C</h5>
         {/* <img className={(countryname === "") ? "none" : "block"} src={icon} width={50}/> */}
 
       </div>
