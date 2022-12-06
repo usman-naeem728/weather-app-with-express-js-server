@@ -4,6 +4,13 @@ import { useState } from 'react';
 import bgimg from "./bg.jpg"
 
 
+let baseUrl = ``;
+if(window.location.href.split(":")[0] === "http"){
+  
+   baseUrl = `http://localhost:5000`
+}
+
+
 function App() {
   const [cityname, setCityname] = useState("");
   const [countryname, setcountryname] = useState("");
@@ -17,7 +24,7 @@ function App() {
 
     const options = {
       method: 'GET',
-      url: 'http://localhost:5000/weather',
+      url: `${baseUrl}/weather`,
       // params: { q: cityname },
       // headers: {
       //   'X-RapidAPI-Key': '4af0c4866bmsh9e303087aa9678ap1a85cdjsn9202652b7d5e',
